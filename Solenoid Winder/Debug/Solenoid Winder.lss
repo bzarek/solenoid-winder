@@ -1,0 +1,543 @@
+
+Solenoid Winder.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000016  00800100  000002f4  00000368  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002f4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000037e  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003b0  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000b8  00000000  00000000  000003ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000016a5  00000000  00000000  000004a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000c63  00000000  00000000  00001b49  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000007ed  00000000  00000000  000027ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001f4  00000000  00000000  00002f9c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000694  00000000  00000000  00003190  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000008e7  00000000  00000000  00003824  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000088  00000000  00000000  0000410b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	13 c0       	rjmp	.+38     	; 0x28 <__ctors_end>
+   2:	2d c0       	rjmp	.+90     	; 0x5e <__bad_interrupt>
+   4:	2c c0       	rjmp	.+88     	; 0x5e <__bad_interrupt>
+   6:	2b c0       	rjmp	.+86     	; 0x5e <__bad_interrupt>
+   8:	2a c0       	rjmp	.+84     	; 0x5e <__bad_interrupt>
+   a:	29 c0       	rjmp	.+82     	; 0x5e <__bad_interrupt>
+   c:	28 c0       	rjmp	.+80     	; 0x5e <__bad_interrupt>
+   e:	27 c0       	rjmp	.+78     	; 0x5e <__bad_interrupt>
+  10:	26 c0       	rjmp	.+76     	; 0x5e <__bad_interrupt>
+  12:	25 c0       	rjmp	.+74     	; 0x5e <__bad_interrupt>
+  14:	24 c0       	rjmp	.+72     	; 0x5e <__bad_interrupt>
+  16:	23 c0       	rjmp	.+70     	; 0x5e <__bad_interrupt>
+  18:	22 c0       	rjmp	.+68     	; 0x5e <__bad_interrupt>
+  1a:	21 c0       	rjmp	.+66     	; 0x5e <__bad_interrupt>
+  1c:	20 c0       	rjmp	.+64     	; 0x5e <__bad_interrupt>
+  1e:	1f c0       	rjmp	.+62     	; 0x5e <__bad_interrupt>
+  20:	1e c0       	rjmp	.+60     	; 0x5e <__bad_interrupt>
+  22:	1d c0       	rjmp	.+58     	; 0x5e <__bad_interrupt>
+  24:	1c c0       	rjmp	.+56     	; 0x5e <__bad_interrupt>
+  26:	1b c0       	rjmp	.+54     	; 0x5e <__bad_interrupt>
+
+00000028 <__ctors_end>:
+  28:	11 24       	eor	r1, r1
+  2a:	1f be       	out	0x3f, r1	; 63
+  2c:	cf ef       	ldi	r28, 0xFF	; 255
+  2e:	d2 e0       	ldi	r29, 0x02	; 2
+  30:	de bf       	out	0x3e, r29	; 62
+  32:	cd bf       	out	0x3d, r28	; 61
+
+00000034 <__do_copy_data>:
+  34:	11 e0       	ldi	r17, 0x01	; 1
+  36:	a0 e0       	ldi	r26, 0x00	; 0
+  38:	b1 e0       	ldi	r27, 0x01	; 1
+  3a:	e4 ef       	ldi	r30, 0xF4	; 244
+  3c:	f2 e0       	ldi	r31, 0x02	; 2
+  3e:	02 c0       	rjmp	.+4      	; 0x44 <__SREG__+0x5>
+  40:	05 90       	lpm	r0, Z+
+  42:	0d 92       	st	X+, r0
+  44:	a6 31       	cpi	r26, 0x16	; 22
+  46:	b1 07       	cpc	r27, r17
+  48:	d9 f7       	brne	.-10     	; 0x40 <__SREG__+0x1>
+
+0000004a <__do_clear_bss>:
+  4a:	21 e0       	ldi	r18, 0x01	; 1
+  4c:	a6 e1       	ldi	r26, 0x16	; 22
+  4e:	b1 e0       	ldi	r27, 0x01	; 1
+  50:	01 c0       	rjmp	.+2      	; 0x54 <.do_clear_bss_start>
+
+00000052 <.do_clear_bss_loop>:
+  52:	1d 92       	st	X+, r1
+
+00000054 <.do_clear_bss_start>:
+  54:	a6 31       	cpi	r26, 0x16	; 22
+  56:	b2 07       	cpc	r27, r18
+  58:	e1 f7       	brne	.-8      	; 0x52 <.do_clear_bss_loop>
+  5a:	04 d1       	rcall	.+520    	; 0x264 <main>
+  5c:	49 c1       	rjmp	.+658    	; 0x2f0 <_exit>
+
+0000005e <__bad_interrupt>:
+  5e:	d0 cf       	rjmp	.-96     	; 0x0 <__vectors>
+
+00000060 <_ZN12HD44780_4bitC1EPVhS1_S1_>:
+{
+	for(uint8_t i = 0; i < strlen(str); i++)
+	{
+		writeChar(str[i]);
+	}
+}
+  60:	fc 01       	movw	r30, r24
+  62:	71 83       	std	Z+1, r23	; 0x01
+  64:	60 83       	st	Z, r22
+  66:	53 83       	std	Z+3, r21	; 0x03
+  68:	42 83       	std	Z+2, r20	; 0x02
+  6a:	35 83       	std	Z+5, r19	; 0x05
+  6c:	24 83       	std	Z+4, r18	; 0x04
+  6e:	db 01       	movw	r26, r22
+  70:	1c 92       	st	X, r1
+  72:	04 80       	ldd	r0, Z+4	; 0x04
+  74:	f5 81       	ldd	r31, Z+5	; 0x05
+  76:	e0 2d       	mov	r30, r0
+  78:	8f ee       	ldi	r24, 0xEF	; 239
+  7a:	80 83       	st	Z, r24
+  7c:	08 95       	ret
+
+0000007e <_ZN12HD44780_4bit12toggleEnableEv>:
+  7e:	fc 01       	movw	r30, r24
+  80:	a0 81       	ld	r26, Z
+  82:	b1 81       	ldd	r27, Z+1	; 0x01
+  84:	8c 91       	ld	r24, X
+  86:	80 62       	ori	r24, 0x20	; 32
+  88:	8c 93       	st	X, r24
+  8a:	a4 81       	ldd	r26, Z+4	; 0x04
+  8c:	b5 81       	ldd	r27, Z+5	; 0x05
+  8e:	8c 91       	ld	r24, X
+  90:	80 62       	ori	r24, 0x20	; 32
+  92:	8c 93       	st	X, r24
+  94:	00 00       	nop
+  96:	01 90       	ld	r0, Z+
+  98:	f0 81       	ld	r31, Z
+  9a:	e0 2d       	mov	r30, r0
+  9c:	80 81       	ld	r24, Z
+  9e:	8f 7d       	andi	r24, 0xDF	; 223
+  a0:	80 83       	st	Z, r24
+  a2:	00 00       	nop
+  a4:	08 95       	ret
+
+000000a6 <_ZN12HD44780_4bit13enter4BitModeEv>:
+  a6:	dc 01       	movw	r26, r24
+  a8:	ed 91       	ld	r30, X+
+  aa:	fc 91       	ld	r31, X
+  ac:	11 97       	sbiw	r26, 0x01	; 1
+  ae:	22 e2       	ldi	r18, 0x22	; 34
+  b0:	20 83       	st	Z, r18
+  b2:	14 96       	adiw	r26, 0x04	; 4
+  b4:	ed 91       	ld	r30, X+
+  b6:	fc 91       	ld	r31, X
+  b8:	15 97       	sbiw	r26, 0x05	; 5
+  ba:	2f ef       	ldi	r18, 0xFF	; 255
+  bc:	20 83       	st	Z, r18
+  be:	df df       	rcall	.-66     	; 0x7e <_ZN12HD44780_4bit12toggleEnableEv>
+  c0:	08 95       	ret
+
+000000c2 <_ZN12HD44780_4bit15sendInstructionEh>:
+  c2:	0f 93       	push	r16
+  c4:	1f 93       	push	r17
+  c6:	cf 93       	push	r28
+  c8:	8c 01       	movw	r16, r24
+  ca:	c6 2f       	mov	r28, r22
+  cc:	dc 01       	movw	r26, r24
+  ce:	ed 91       	ld	r30, X+
+  d0:	fc 91       	ld	r31, X
+  d2:	11 97       	sbiw	r26, 0x01	; 1
+  d4:	86 2f       	mov	r24, r22
+  d6:	82 95       	swap	r24
+  d8:	8f 70       	andi	r24, 0x0F	; 15
+  da:	80 62       	ori	r24, 0x20	; 32
+  dc:	80 83       	st	Z, r24
+  de:	14 96       	adiw	r26, 0x04	; 4
+  e0:	ed 91       	ld	r30, X+
+  e2:	fc 91       	ld	r31, X
+  e4:	15 97       	sbiw	r26, 0x05	; 5
+  e6:	8f ef       	ldi	r24, 0xFF	; 255
+  e8:	80 83       	st	Z, r24
+  ea:	c8 01       	movw	r24, r16
+  ec:	c8 df       	rcall	.-112    	; 0x7e <_ZN12HD44780_4bit12toggleEnableEv>
+  ee:	d8 01       	movw	r26, r16
+  f0:	ed 91       	ld	r30, X+
+  f2:	fc 91       	ld	r31, X
+  f4:	cf 70       	andi	r28, 0x0F	; 15
+  f6:	c0 62       	ori	r28, 0x20	; 32
+  f8:	c0 83       	st	Z, r28
+  fa:	c8 01       	movw	r24, r16
+  fc:	c0 df       	rcall	.-128    	; 0x7e <_ZN12HD44780_4bit12toggleEnableEv>
+  fe:	bc e0       	ldi	r27, 0x0C	; 12
+ 100:	ba 95       	dec	r27
+ 102:	f1 f7       	brne	.-4      	; 0x100 <_ZN12HD44780_4bit15sendInstructionEh+0x3e>
+ 104:	00 00       	nop
+ 106:	cf 91       	pop	r28
+ 108:	1f 91       	pop	r17
+ 10a:	0f 91       	pop	r16
+ 10c:	08 95       	ret
+
+0000010e <_ZN12HD44780_4bit9writeCharEc>:
+ 10e:	0f 93       	push	r16
+ 110:	1f 93       	push	r17
+ 112:	cf 93       	push	r28
+ 114:	8c 01       	movw	r16, r24
+ 116:	c6 2f       	mov	r28, r22
+ 118:	dc 01       	movw	r26, r24
+ 11a:	ed 91       	ld	r30, X+
+ 11c:	fc 91       	ld	r31, X
+ 11e:	11 97       	sbiw	r26, 0x01	; 1
+ 120:	86 2f       	mov	r24, r22
+ 122:	82 95       	swap	r24
+ 124:	8f 70       	andi	r24, 0x0F	; 15
+ 126:	80 6a       	ori	r24, 0xA0	; 160
+ 128:	80 83       	st	Z, r24
+ 12a:	14 96       	adiw	r26, 0x04	; 4
+ 12c:	ed 91       	ld	r30, X+
+ 12e:	fc 91       	ld	r31, X
+ 130:	15 97       	sbiw	r26, 0x05	; 5
+ 132:	8f ef       	ldi	r24, 0xFF	; 255
+ 134:	80 83       	st	Z, r24
+ 136:	c8 01       	movw	r24, r16
+ 138:	a2 df       	rcall	.-188    	; 0x7e <_ZN12HD44780_4bit12toggleEnableEv>
+ 13a:	d8 01       	movw	r26, r16
+ 13c:	ed 91       	ld	r30, X+
+ 13e:	fc 91       	ld	r31, X
+ 140:	cf 70       	andi	r28, 0x0F	; 15
+ 142:	c0 6a       	ori	r28, 0xA0	; 160
+ 144:	c0 83       	st	Z, r28
+ 146:	c8 01       	movw	r24, r16
+ 148:	9a df       	rcall	.-204    	; 0x7e <_ZN12HD44780_4bit12toggleEnableEv>
+ 14a:	cf 91       	pop	r28
+ 14c:	1f 91       	pop	r17
+ 14e:	0f 91       	pop	r16
+ 150:	08 95       	ret
+
+00000152 <_ZN12HD44780_4bit5clearEv>:
+ 152:	61 e0       	ldi	r22, 0x01	; 1
+ 154:	b6 df       	rcall	.-148    	; 0xc2 <_ZN12HD44780_4bit15sendInstructionEh>
+ 156:	81 ee       	ldi	r24, 0xE1	; 225
+ 158:	94 e0       	ldi	r25, 0x04	; 4
+ 15a:	01 97       	sbiw	r24, 0x01	; 1
+ 15c:	f1 f7       	brne	.-4      	; 0x15a <_ZN12HD44780_4bit5clearEv+0x8>
+ 15e:	00 c0       	rjmp	.+0      	; 0x160 <_ZN12HD44780_4bit5clearEv+0xe>
+ 160:	00 00       	nop
+ 162:	08 95       	ret
+
+00000164 <_ZN12HD44780_4bit7setModeEh>:
+
+void HD44780_4bit::setMode(uint8_t settings)
+{
+ 164:	0f 93       	push	r16
+ 166:	1f 93       	push	r17
+ 168:	cf 93       	push	r28
+ 16a:	8c 01       	movw	r16, r24
+ 16c:	c6 2f       	mov	r28, r22
+	 * Bit 3: 0 = 1 line display	1 = 2 line display
+	 * Bit 2: 0 = 5x8 dot display	1 = 5x10 dot display
+	 * Bit 1: 0 = Decrement			1 = Increment
+	 * Bit 0: 0 = No shift			1 = Shift display
+	 */
+	enter4BitMode();
+ 16e:	9b df       	rcall	.-202    	; 0xa6 <_ZN12HD44780_4bit13enter4BitModeEv>
+	sendInstruction((settings & 0b00001100) | 0b00100000);
+ 170:	6c 2f       	mov	r22, r28
+ 172:	6c 70       	andi	r22, 0x0C	; 12
+ 174:	60 62       	ori	r22, 0x20	; 32
+ 176:	c8 01       	movw	r24, r16
+ 178:	a4 df       	rcall	.-184    	; 0xc2 <_ZN12HD44780_4bit15sendInstructionEh>
+	sendInstruction((settings & 0b00000011) | 0b00000100);
+ 17a:	6c 2f       	mov	r22, r28
+ 17c:	63 70       	andi	r22, 0x03	; 3
+ 17e:	64 60       	ori	r22, 0x04	; 4
+ 180:	c8 01       	movw	r24, r16
+ 182:	9f df       	rcall	.-194    	; 0xc2 <_ZN12HD44780_4bit15sendInstructionEh>
+	sendInstruction(((settings>>4) & 0b00000111) | 0b00001000);
+ 184:	6c 2f       	mov	r22, r28
+ 186:	70 e0       	ldi	r23, 0x00	; 0
+ 188:	75 95       	asr	r23
+ 18a:	67 95       	ror	r22
+ 18c:	75 95       	asr	r23
+ 18e:	67 95       	ror	r22
+ 190:	75 95       	asr	r23
+ 192:	67 95       	ror	r22
+ 194:	75 95       	asr	r23
+ 196:	67 95       	ror	r22
+ 198:	67 70       	andi	r22, 0x07	; 7
+ 19a:	68 60       	ori	r22, 0x08	; 8
+ 19c:	c8 01       	movw	r24, r16
+ 19e:	91 df       	rcall	.-222    	; 0xc2 <_ZN12HD44780_4bit15sendInstructionEh>
+}
+ 1a0:	cf 91       	pop	r28
+ 1a2:	1f 91       	pop	r17
+ 1a4:	0f 91       	pop	r16
+ 1a6:	08 95       	ret
+
+000001a8 <_ZN6KeypadC1EPVhS1_S1_>:
+#include <util/delay.h>
+#include "Keypad.h"
+
+char KEYPAD_LABELS[16] = {'1','2','3','A','4','5','6','B','7','8','9','C','*','0','#','D'};
+
+Keypad::Keypad(volatile uint8_t *Out, volatile uint8_t *In, volatile uint8_t *CNTRL)
+ 1a8:	fc 01       	movw	r30, r24
+{
+	portOut = Out;
+ 1aa:	71 83       	std	Z+1, r23	; 0x01
+ 1ac:	60 83       	st	Z, r22
+	portIn = In;
+ 1ae:	53 83       	std	Z+3, r21	; 0x03
+ 1b0:	42 83       	std	Z+2, r20	; 0x02
+	portCNTRL = CNTRL;
+ 1b2:	35 83       	std	Z+5, r19	; 0x05
+ 1b4:	24 83       	std	Z+4, r18	; 0x04
+	*portCNTRL = 0b11110000;
+ 1b6:	80 ef       	ldi	r24, 0xF0	; 240
+ 1b8:	d9 01       	movw	r26, r18
+ 1ba:	8c 93       	st	X, r24
+	*portOut = 0b11111111;
+ 1bc:	01 90       	ld	r0, Z+
+ 1be:	f0 81       	ld	r31, Z
+ 1c0:	e0 2d       	mov	r30, r0
+ 1c2:	8f ef       	ldi	r24, 0xFF	; 255
+ 1c4:	80 83       	st	Z, r24
+ 1c6:	08 95       	ret
+
+000001c8 <_ZN6Keypad8readCharEPh>:
+}
+
+char Keypad::readChar(uint8_t *valid)
+{
+ 1c8:	cf 92       	push	r12
+ 1ca:	df 92       	push	r13
+ 1cc:	ef 92       	push	r14
+ 1ce:	ff 92       	push	r15
+ 1d0:	0f 93       	push	r16
+ 1d2:	1f 93       	push	r17
+ 1d4:	cf 93       	push	r28
+ 1d6:	df 93       	push	r29
+ 1d8:	ec 01       	movw	r28, r24
+ 1da:	e6 2e       	mov	r14, r22
+ 1dc:	f7 2e       	mov	r15, r23
+ 1de:	6e 5f       	subi	r22, 0xFE	; 254
+ 1e0:	7f 4f       	sbci	r23, 0xFF	; 255
+	while(true)
+	{
+		for(uint8_t i = 0; i<sizeof(valid); i++)
+		{
+			*portOut = ~(0b00010000 << (valid[i] / 4));
+ 1e2:	40 e1       	ldi	r20, 0x10	; 16
+ 1e4:	50 e0       	ldi	r21, 0x00	; 0
+ 1e6:	ee 2d       	mov	r30, r14
+ 1e8:	ff 2d       	mov	r31, r15
+ 1ea:	08 81       	ld	r16, Y
+ 1ec:	19 81       	ldd	r17, Y+1	; 0x01
+ 1ee:	6f 01       	movw	r12, r30
+ 1f0:	81 91       	ld	r24, Z+
+ 1f2:	86 95       	lsr	r24
+ 1f4:	86 95       	lsr	r24
+ 1f6:	9a 01       	movw	r18, r20
+ 1f8:	02 c0       	rjmp	.+4      	; 0x1fe <_ZN6Keypad8readCharEPh+0x36>
+ 1fa:	22 0f       	add	r18, r18
+ 1fc:	33 1f       	adc	r19, r19
+ 1fe:	8a 95       	dec	r24
+ 200:	e2 f7       	brpl	.-8      	; 0x1fa <_ZN6Keypad8readCharEPh+0x32>
+ 202:	20 95       	com	r18
+ 204:	d8 01       	movw	r26, r16
+ 206:	2c 93       	st	X, r18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 208:	89 ef       	ldi	r24, 0xF9	; 249
+ 20a:	90 e0       	ldi	r25, 0x00	; 0
+ 20c:	01 97       	sbiw	r24, 0x01	; 1
+ 20e:	f1 f7       	brne	.-4      	; 0x20c <_ZN6Keypad8readCharEPh+0x44>
+ 210:	00 c0       	rjmp	.+0      	; 0x212 <_ZN6Keypad8readCharEPh+0x4a>
+ 212:	00 00       	nop
+			_delay_ms(1);
+			if((*portIn & (0b00000001 << (valid[i] % 4))) == 0)
+ 214:	8a 81       	ldd	r24, Y+2	; 0x02
+ 216:	9b 81       	ldd	r25, Y+3	; 0x03
+ 218:	dc 01       	movw	r26, r24
+ 21a:	2c 91       	ld	r18, X
+ 21c:	30 e0       	ldi	r19, 0x00	; 0
+ 21e:	d6 01       	movw	r26, r12
+ 220:	9c 91       	ld	r25, X
+ 222:	93 70       	andi	r25, 0x03	; 3
+ 224:	02 c0       	rjmp	.+4      	; 0x22a <_ZN6Keypad8readCharEPh+0x62>
+ 226:	35 95       	asr	r19
+ 228:	27 95       	ror	r18
+ 22a:	9a 95       	dec	r25
+ 22c:	e2 f7       	brpl	.-8      	; 0x226 <_ZN6Keypad8readCharEPh+0x5e>
+ 22e:	20 fd       	sbrc	r18, 0
+ 230:	0c c0       	rjmp	.+24     	; 0x24a <_ZN6Keypad8readCharEPh+0x82>
+ 232:	81 ee       	ldi	r24, 0xE1	; 225
+ 234:	94 e0       	ldi	r25, 0x04	; 4
+ 236:	01 97       	sbiw	r24, 0x01	; 1
+ 238:	f1 f7       	brne	.-4      	; 0x236 <_ZN6Keypad8readCharEPh+0x6e>
+ 23a:	00 c0       	rjmp	.+0      	; 0x23c <_ZN6Keypad8readCharEPh+0x74>
+ 23c:	00 00       	nop
+			{
+				_delay_ms(5);
+				return KEYPAD_LABELS[valid[i]];
+ 23e:	ec 91       	ld	r30, X
+ 240:	f0 e0       	ldi	r31, 0x00	; 0
+ 242:	e0 50       	subi	r30, 0x00	; 0
+ 244:	ff 4f       	sbci	r31, 0xFF	; 255
+ 246:	80 81       	ld	r24, Z
+ 248:	04 c0       	rjmp	.+8      	; 0x252 <_ZN6Keypad8readCharEPh+0x8a>
+
+char Keypad::readChar(uint8_t *valid)
+{
+	while(true)
+	{
+		for(uint8_t i = 0; i<sizeof(valid); i++)
+ 24a:	e6 17       	cp	r30, r22
+ 24c:	f7 07       	cpc	r31, r23
+ 24e:	69 f6       	brne	.-102    	; 0x1ea <_ZN6Keypad8readCharEPh+0x22>
+ 250:	ca cf       	rjmp	.-108    	; 0x1e6 <_ZN6Keypad8readCharEPh+0x1e>
+				_delay_ms(5);
+				return KEYPAD_LABELS[valid[i]];
+			}
+		}
+	}
+}
+ 252:	df 91       	pop	r29
+ 254:	cf 91       	pop	r28
+ 256:	1f 91       	pop	r17
+ 258:	0f 91       	pop	r16
+ 25a:	ff 90       	pop	r15
+ 25c:	ef 90       	pop	r14
+ 25e:	df 90       	pop	r13
+ 260:	cf 90       	pop	r12
+ 262:	08 95       	ret
+
+00000264 <main>:
+	TCCR0A = 0b00000101;	//timer setup: CLK/1024 in normal operation mode
+	TIMSK0 = 0b00000001;	//timer overflow interrupt enable ON
+}
+
+int main(void)
+{
+ 264:	cf 93       	push	r28
+ 266:	df 93       	push	r29
+ 268:	cd b7       	in	r28, 0x3d	; 61
+ 26a:	de b7       	in	r29, 0x3e	; 62
+ 26c:	62 97       	sbiw	r28, 0x12	; 18
+ 26e:	0f b6       	in	r0, 0x3f	; 63
+ 270:	f8 94       	cli
+ 272:	de bf       	out	0x3e, r29	; 62
+ 274:	0f be       	out	0x3f, r0	; 63
+ 276:	cd bf       	out	0x3d, r28	; 61
+
+uint8_t ALL_KEYS[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+
+static void init()
+{
+	TCCR0A = 0b00000101;	//timer setup: CLK/1024 in normal operation mode
+ 278:	85 e0       	ldi	r24, 0x05	; 5
+ 27a:	85 bd       	out	0x25, r24	; 37
+	TIMSK0 = 0b00000001;	//timer overflow interrupt enable ON
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__EEPROM_REGION_LENGTH__+0x7f006e>
+int main(void)
+{
+	init();
+	
+	//Initialize LCD Screen for Port D
+	HD44780_4bit LCD1 = HD44780_4bit(&PORTD, &PIND, &DDRD);
+ 282:	2a e2       	ldi	r18, 0x2A	; 42
+ 284:	30 e0       	ldi	r19, 0x00	; 0
+ 286:	49 e2       	ldi	r20, 0x29	; 41
+ 288:	50 e0       	ldi	r21, 0x00	; 0
+ 28a:	6b e2       	ldi	r22, 0x2B	; 43
+ 28c:	70 e0       	ldi	r23, 0x00	; 0
+ 28e:	ce 01       	movw	r24, r28
+ 290:	0d 96       	adiw	r24, 0x0d	; 13
+ 292:	e6 de       	rcall	.-564    	; 0x60 <_ZN12HD44780_4bitC1EPVhS1_S1_>
+	LCD1.setMode(0b01001010);
+ 294:	6a e4       	ldi	r22, 0x4A	; 74
+ 296:	ce 01       	movw	r24, r28
+ 298:	0d 96       	adiw	r24, 0x0d	; 13
+ 29a:	64 df       	rcall	.-312    	; 0x164 <_ZN12HD44780_4bit7setModeEh>
+	LCD1.clear();
+ 29c:	ce 01       	movw	r24, r28
+ 29e:	0d 96       	adiw	r24, 0x0d	; 13
+ 2a0:	58 df       	rcall	.-336    	; 0x152 <_ZN12HD44780_4bit5clearEv>
+	
+	//Initialize Keypad for Port C
+	Keypad keypad1 = Keypad(&PORTC, &PINC, &DDRC);
+ 2a2:	27 e2       	ldi	r18, 0x27	; 39
+ 2a4:	30 e0       	ldi	r19, 0x00	; 0
+ 2a6:	46 e2       	ldi	r20, 0x26	; 38
+ 2a8:	50 e0       	ldi	r21, 0x00	; 0
+ 2aa:	68 e2       	ldi	r22, 0x28	; 40
+ 2ac:	70 e0       	ldi	r23, 0x00	; 0
+ 2ae:	ce 01       	movw	r24, r28
+ 2b0:	07 96       	adiw	r24, 0x07	; 7
+ 2b2:	7a df       	rcall	.-268    	; 0x1a8 <_ZN6KeypadC1EPVhS1_S1_>
+	
+	//Read keypad input and display to screen
+	
+    while (1) 
+    {
+		uint8_t testVect[] = {0,1,2,3,4,5};
+ 2b4:	16 e0       	ldi	r17, 0x06	; 6
+ 2b6:	e0 e1       	ldi	r30, 0x10	; 16
+ 2b8:	f1 e0       	ldi	r31, 0x01	; 1
+ 2ba:	de 01       	movw	r26, r28
+ 2bc:	11 96       	adiw	r26, 0x01	; 1
+ 2be:	81 2f       	mov	r24, r17
+ 2c0:	01 90       	ld	r0, Z+
+ 2c2:	0d 92       	st	X+, r0
+ 2c4:	8a 95       	dec	r24
+ 2c6:	e1 f7       	brne	.-8      	; 0x2c0 <main+0x5c>
+		char input = keypad1.readChar(testVect);
+ 2c8:	be 01       	movw	r22, r28
+ 2ca:	6f 5f       	subi	r22, 0xFF	; 255
+ 2cc:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2ce:	ce 01       	movw	r24, r28
+ 2d0:	07 96       	adiw	r24, 0x07	; 7
+ 2d2:	7a df       	rcall	.-268    	; 0x1c8 <_ZN6Keypad8readCharEPh>
+		LCD1.writeChar(input);
+ 2d4:	68 2f       	mov	r22, r24
+ 2d6:	ce 01       	movw	r24, r28
+ 2d8:	0d 96       	adiw	r24, 0x0d	; 13
+ 2da:	19 df       	rcall	.-462    	; 0x10e <_ZN12HD44780_4bit9writeCharEc>
+ 2dc:	2f e9       	ldi	r18, 0x9F	; 159
+ 2de:	86 e8       	ldi	r24, 0x86	; 134
+ 2e0:	91 e0       	ldi	r25, 0x01	; 1
+ 2e2:	21 50       	subi	r18, 0x01	; 1
+ 2e4:	80 40       	sbci	r24, 0x00	; 0
+ 2e6:	90 40       	sbci	r25, 0x00	; 0
+ 2e8:	e1 f7       	brne	.-8      	; 0x2e2 <main+0x7e>
+ 2ea:	00 c0       	rjmp	.+0      	; 0x2ec <main+0x88>
+ 2ec:	00 00       	nop
+		_delay_ms(500);
+    }
+ 2ee:	e3 cf       	rjmp	.-58     	; 0x2b6 <main+0x52>
+
+000002f0 <_exit>:
+ 2f0:	f8 94       	cli
+
+000002f2 <__stop_program>:
+ 2f2:	ff cf       	rjmp	.-2      	; 0x2f2 <__stop_program>
